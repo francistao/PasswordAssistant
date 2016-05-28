@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-
     <data>
-
         <variable
             name="index"
             type="com.geniusvjr.jpasswordassistant.mvp.model.bean.IndexBean"/>
@@ -42,6 +40,13 @@
                     android:background="@drawable/toolbar_shadow"
                     />
 
+                <com.geniusvjr.jpasswordassistant.widget.XViewPager
+                    android:id="@+id/content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="?attr/actionBarSize"
+                    />
+
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/fab"
                     android:layout_width="wrap_content"
@@ -50,6 +55,16 @@
                     android:layout_margin="@dimen/fab_margin"
                     android:src="@mipmap/add" />
             </android.support.design.widget.CoordinatorLayout>
+
+            <android.support.design.widget.NavigationView
+                android:id="@+id/navigationView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                app:headerLayout="@layout/nav_header"
+                app:menu="@menu/nav_drawer_menu"
+                >
+            </android.support.design.widget.NavigationView>
         </android.support.v4.widget.DrawerLayout>
 
     </LinearLayout>
