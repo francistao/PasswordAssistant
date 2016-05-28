@@ -76,5 +76,5 @@ dependencies {
     compile 'com.rengwuxian.materialedittext:library:2.1.4'
     compile 'me.imid.swipebacklayout.lib:library:1.0.0'
     compile 'com.jakewharton.rxbinding:rxbinding:0.3.0'
-    compile 'com.jakewharton:butterknife:5.1.1'
+    compile 'com.jakewharton:butterknife:7.0.1'
 }
