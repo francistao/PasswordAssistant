@@ -53,7 +53,8 @@ public class ThemeUtils {
 
     //得到当前主题
     public static Theme getCurrentTheme(Context context){
-        int value = (int) SPUtils.get(context,context.getResources().getString(R.string.change_theme_key), 1);
+        //可通过设置默认颜色
+        int value = (int) SPUtils.get(context,context.getResources().getString(R.string.change_theme_key), 7);
         return ThemeUtils.Theme.mapValueToTheme(value);
     }
 

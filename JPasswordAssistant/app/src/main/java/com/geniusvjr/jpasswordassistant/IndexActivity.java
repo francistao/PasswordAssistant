@@ -1,5 +1,6 @@
 package com.geniusvjr.jpasswordassistant;
 
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.BaseAdapter;
@@ -7,13 +8,14 @@ import android.widget.BaseAdapter;
 import com.geniusvjr.jpasswordassistant.mvp.model.eventbus.EventCenter;
 import com.geniusvjr.jpasswordassistant.mvp.ui.activity.base.Base;
 import com.geniusvjr.jpasswordassistant.mvp.ui.activity.base.BaseActivity;
+import com.geniusvjr.jpasswordassistant.mvp.ui.view.IndexAView;
 
-public class MainActivity extends BaseActivity {
+public class IndexActivity extends BaseActivity implements IndexAView{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
+
     }
 
     @Override
@@ -33,7 +35,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected int getContentView() {
-        return 0;
+        return R.layout.activity_index;
     }
 
     @Override
@@ -54,5 +56,35 @@ public class MainActivity extends BaseActivity {
     @Override
     protected boolean isApplyEventBus() {
         return false;
+    }
+
+    @Override
+    public void initDrawerToggle() {
+
+    }
+
+    @Override
+    public void initXViewPager() {
+
+    }
+
+    @Override
+    public void readyGoForResult(Class clazz) {
+
+    }
+
+    @Override
+    public void go2Setting() {
+
+    }
+
+    @Override
+    public void showSnackBar(String msg) {
+//        Snackbar.make()
+    }
+
+    @Override
+    public void kill() {
+        finish();
     }
 }

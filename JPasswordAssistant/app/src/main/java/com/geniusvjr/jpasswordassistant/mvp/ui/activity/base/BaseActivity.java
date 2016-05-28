@@ -38,7 +38,7 @@ public abstract class BaseActivity extends Base{
         if(isApplyTranslucency()){
             initWindow();
         }
-//        mDataBinding = DataBindingUtil.setContentView(this, getContentView());
+        mDataBinding = DataBindingUtil.setContentView(this, getContentView());
 
         if(isApplyButterKnife()){
             ButterKnife.bind(this);

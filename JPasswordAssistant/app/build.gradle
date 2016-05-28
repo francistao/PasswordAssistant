@@ -46,12 +46,7 @@ android {
     }
 
     productFlavors {
-//        _fir{}
-//        _mumayi{}
-        _wandoujia{}
-//        _xiaomi{}
-//        _yingyongbao{}
-//        _360{}
+
     }
 
     productFlavors.all {
