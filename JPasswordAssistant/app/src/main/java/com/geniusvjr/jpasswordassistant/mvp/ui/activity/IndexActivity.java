@@ -1,11 +1,14 @@
 package com.geniusvjr.jpasswordassistant.mvp.ui.activity;
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 import android.widget.BaseAdapter;
 
@@ -16,6 +19,7 @@ import com.geniusvjr.jpasswordassistant.mvp.model.eventbus.EventCenter;
 import com.geniusvjr.jpasswordassistant.mvp.presenter.impl.IndexPreImpl;
 import com.geniusvjr.jpasswordassistant.mvp.ui.activity.base.Base;
 import com.geniusvjr.jpasswordassistant.mvp.ui.activity.base.BaseActivity;
+import com.geniusvjr.jpasswordassistant.mvp.ui.adapter.IndexContentAdapter;
 import com.geniusvjr.jpasswordassistant.mvp.ui.view.IndexAView;
 
 import butterknife.Bind;
@@ -55,7 +59,9 @@ public class IndexActivity extends BaseActivity implements IndexAView{
 
     @Override
     protected void onEventComing(EventCenter eventCenter) {
-
+        if (eventCenter.getEventCode() == Constants.EVEN_BUS.CHANGE_THEME){
+            reload(false);
+        }
     }
 
     @Override
@@ -86,13 +92,10 @@ public class IndexActivity extends BaseActivity implements IndexAView{
     @Override
     public void initDrawerToggle() {
         mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDataBinding.drawerLayout, mDataBinding.commonToolbar, 0, 0){
-            @Override
-            public void onDrawerClosed(View drawerView) {
+            @Override public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
             }
-
-            @Override
-            public void onDrawerOpened(View drawerView) {
+            @Override public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
             }
         };
@@ -102,7 +105,9 @@ public class IndexActivity extends BaseActivity implements IndexAView{
 
     @Override
     public void initXViewPager() {
-
+        mDataBinding.content.setOffscreenPageLimit(3);
+        IndexContentAdapter indexContentAdapter = new IndexContentAdapter(getSupportFragmentManager());
+        mDataBinding.content.setAdapter(indexContentAdapter);
     }
 
     @Override
@@ -110,6 +115,21 @@ public class IndexActivity extends BaseActivity implements IndexAView{
         Intent intent = new Intent(this, clazz);
         intent.putExtra("CREATE_MODE", Constants.CREATE_MODE);
         startActivityForResult(intent, INDEX_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        if (mActionBarDrawerToggle != null) {
+            mActionBarDrawerToggle.syncState();
+        }
+    }
+
+    @Override public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (mActionBarDrawerToggle != null) {
+            mActionBarDrawerToggle.onConfigurationChanged(newConfig);
+        }
     }
 
     @Override
@@ -132,5 +152,11 @@ public class IndexActivity extends BaseActivity implements IndexAView{
         if(mIndexPre.onBackPress()){
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 }
