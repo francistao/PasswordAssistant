@@ -139,7 +139,8 @@ public class IndexActivity extends BaseActivity implements IndexAView {
 
     @Override
     public void go2Setting() {
-
+        Intent intent = new Intent(this, SettingActivity.class);
+        startActivityForResult(intent, SETTING_REQUEST_CODE);
     }
 
     @Override
@@ -169,6 +170,7 @@ public class IndexActivity extends BaseActivity implements IndexAView {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.setting:
+                go2Setting();
                 return true;
             case R.id.about:
                 Intent intent = new Intent(this, AboutActivity.class);

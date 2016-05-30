@@ -27,7 +27,9 @@
         <activity android:name=".mvp.ui.activity.EditActivity" />
         <activity android:name=".mvp.ui.activity.AboutActivity" />
         <activity android:name=".mvp.ui.activity.WebViewActivity"/>
-        
+        <activity
+            android:name=".mvp.ui.activity.SettingActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>
