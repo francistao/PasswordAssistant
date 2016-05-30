@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.BaseAdapter;
 
@@ -24,7 +25,7 @@ import com.geniusvjr.jpasswordassistant.mvp.ui.view.IndexAView;
 
 import butterknife.Bind;
 
-public class IndexActivity extends BaseActivity implements IndexAView{
+public class IndexActivity extends BaseActivity implements IndexAView {
 
     private static final int INDEX_REQUEST_CODE = 1;
     private static final int SETTING_REQUEST_CODE = 2;
@@ -59,7 +60,7 @@ public class IndexActivity extends BaseActivity implements IndexAView{
 
     @Override
     protected void onEventComing(EventCenter eventCenter) {
-        if (eventCenter.getEventCode() == Constants.EVEN_BUS.CHANGE_THEME){
+        if (eventCenter.getEventCode() == Constants.EVEN_BUS.CHANGE_THEME) {
             reload(false);
         }
     }
@@ -91,11 +92,14 @@ public class IndexActivity extends BaseActivity implements IndexAView{
 
     @Override
     public void initDrawerToggle() {
-        mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDataBinding.drawerLayout, mDataBinding.commonToolbar, 0, 0){
-            @Override public void onDrawerClosed(View drawerView) {
+        mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDataBinding.drawerLayout, mDataBinding.commonToolbar, 0, 0) {
+            @Override
+            public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
             }
-            @Override public void onDrawerOpened(View drawerView) {
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
             }
         };
@@ -125,7 +129,8 @@ public class IndexActivity extends BaseActivity implements IndexAView{
         }
     }
 
-    @Override public void onConfigurationChanged(Configuration newConfig) {
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         if (mActionBarDrawerToggle != null) {
             mActionBarDrawerToggle.onConfigurationChanged(newConfig);
@@ -149,7 +154,7 @@ public class IndexActivity extends BaseActivity implements IndexAView{
 
     @Override
     public void onBackPressed() {
-        if(mIndexPre.onBackPress()){
+        if (mIndexPre.onBackPress()) {
             super.onBackPressed();
         }
     }
@@ -158,5 +163,18 @@ public class IndexActivity extends BaseActivity implements IndexAView{
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.setting:
+                return true;
+            case R.id.about:
+                Intent intent = new Intent(this, AboutActivity.class);
+                startActivity(intent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

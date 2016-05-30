@@ -25,6 +25,9 @@
         </activity>
 
         <activity android:name=".mvp.ui.activity.EditActivity" />
+        <activity android:name=".mvp.ui.activity.AboutActivity" />
+        <activity android:name=".mvp.ui.activity.WebViewActivity"/>
+        
     </application>
 
 </manifest>

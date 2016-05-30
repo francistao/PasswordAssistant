@@ -4,35 +4,34 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import com.geniusvjr.jpasswordassistant.R;
-import com.geniusvjr.jpasswordassistant.databinding.ActivityAboutBinding;
 import com.geniusvjr.jpasswordassistant.mvp.model.eventbus.EventCenter;
-import com.geniusvjr.jpasswordassistant.mvp.presenter.impl.AboutAImpl;
 import com.geniusvjr.jpasswordassistant.mvp.ui.activity.base.Base;
 import com.geniusvjr.jpasswordassistant.mvp.ui.activity.base.BaseSwipeBackActivity;
-import com.geniusvjr.jpasswordassistant.mvp.ui.view.AboutAView;
+import com.geniusvjr.jpasswordassistant.widget.BrowserLayout;
 
 import butterknife.Bind;
-import butterknife.OnClick;
 
 /**
- * Created by dream on 16/5/27.
+ * Created by dream on 16/5/29.
  */
-public class AboutActivity extends BaseSwipeBackActivity implements AboutAView{
+public class WebViewActivity extends BaseSwipeBackActivity {
 
     @Bind(R.id.common_toolbar)
     Toolbar mToolBar;
-    private AboutAImpl mAboutImpl;
+    @Bind(R.id.brower)
+    BrowserLayout mBrowser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityAboutBinding mDataBinding = (ActivityAboutBinding) super.mDataBinding;
-        mAboutImpl = new AboutAImpl(this, this, mDataBinding);
-        mAboutImpl.onCreate(savedInstanceState);
-        mAboutImpl.getIntent(getIntent());
+        Intent intent = getIntent();
+        if(intent != null){
+            Bundle bundle = intent.getExtras();
+            String url = bundle.getString("URL");
+            mBrowser.loadUrl(url);
+        }
     }
 
     @Override
@@ -42,14 +41,22 @@ public class AboutActivity extends BaseSwipeBackActivity implements AboutAView{
 
     @Override
     protected int getContentView() {
-        return R.layout.activity_about;
+        return R.layout.activity_web_view;
     }
 
     @Override
     protected void initToolbar() {
         initToolBar(mToolBar);
-        mToolBar.setTitle("关于");
+        mToolBar.setTitle("作者博客");
+    }
 
+    @Override
+    public void onBackPressed() {
+        if(mBrowser.canGoBack()){
+            mBrowser.getWebView().goBack();
+        }else {
+            super.onBackPressed();
+        }
     }
 
     @Override
@@ -69,22 +76,11 @@ public class AboutActivity extends BaseSwipeBackActivity implements AboutAView{
 
     @Override
     protected TransitionMode getOverridePendingTransitionMode() {
-        return TransitionMode.RIGHT;
+        return null;
     }
 
     @Override
     protected boolean toggleOverridePendingTransition() {
-        return true;
-    }
-
-    @OnClick(R.id.codeButton) public void onClick(View view) {
-        mAboutImpl.codeClick(view);
-    }
-
-    @Override
-    public void go2Activity(Class clazz, Bundle bundle) {
-        Intent intent = new Intent(this, clazz);
-        intent.putExtras(bundle);
-        startActivity(intent);
+        return false;
     }
 }
