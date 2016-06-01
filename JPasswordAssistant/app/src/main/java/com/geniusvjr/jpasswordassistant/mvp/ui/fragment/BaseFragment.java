@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.geniusvjr.jpasswordassistant.mvp.model.eventbus.EventCenter;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.lang.reflect.Field;
 
@@ -126,6 +127,7 @@ public abstract class BaseFragment extends Fragment{
         }
     }
 
+    @Subscribe
     public void onMessageEvent(EventCenter event){
         if(event != null){
             onEventComing(event);
