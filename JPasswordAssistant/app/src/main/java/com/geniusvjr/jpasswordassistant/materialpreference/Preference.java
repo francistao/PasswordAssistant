@@ -1,4 +1,4 @@
-package com.jenzz.materialpreference;
+package com.geniusvjr.jpasswordassistant.materialpreference;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -11,12 +11,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.geniusvjr.jpasswordassistant.R;
+
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 import static android.os.Build.VERSION_CODES.LOLLIPOP;
 import static android.text.TextUtils.isEmpty;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static com.jenzz.materialpreference.Typefaces.getRobotoRegular;
+import static com.geniusvjr.jpasswordassistant.materialpreference.Typefaces.getRobotoRegular;
 
 public class Preference extends android.preference.Preference {
 

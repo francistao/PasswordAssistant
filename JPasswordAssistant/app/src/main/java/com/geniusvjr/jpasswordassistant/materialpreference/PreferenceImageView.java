@@ -1,4 +1,4 @@
-package com.jenzz.materialpreference;
+package com.geniusvjr.jpasswordassistant.materialpreference;
 
 import android.annotation.TargetApi;
 import android.content.Context;

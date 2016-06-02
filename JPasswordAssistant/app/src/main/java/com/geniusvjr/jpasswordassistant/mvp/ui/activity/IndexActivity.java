@@ -153,6 +153,12 @@ public class IndexActivity extends BaseActivity implements IndexAView {
     }
 
     @Override
+    public void go2About() {
+        Intent intent = new Intent(this, AboutActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
     public void onBackPressed() {
         if (mIndexPre.onBackPress()) {
             super.onBackPressed();

@@ -17,14 +17,19 @@ import butterknife.Bind;
  */
 public class SettingActivity extends BaseSwipeBackActivity{
 
-    @Bind(R.id.common_toolbar)
-    Toolbar mToolBar;
+    @Bind(R.id.common_toolbar) Toolbar mToolBar;
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setFragment();
+    }
+
+    @Override protected TransitionMode getOverridePendingTransitionMode() {
+        return TransitionMode.RIGHT;
+    }
+
+    @Override protected boolean toggleOverridePendingTransition() {
+        return true;
     }
 
     private void setFragment() {
@@ -34,45 +39,29 @@ public class SettingActivity extends BaseSwipeBackActivity{
                 .commit();
     }
 
-    @Override
-    protected void onEventComing(EventCenter eventCenter) {
+    @Override protected void onEventComing(EventCenter eventCenter) {
 
     }
 
-    @Override
-    protected int getContentView() {
+    @Override protected int getContentView() {
         return R.layout.activity_setting;
     }
 
-    @Override
-    protected void initToolbar() {
+    @Override protected void initToolbar() {
         initToolBar(mToolBar);
         mToolBar.setTitle("设置");
     }
 
-    @Override
-    protected boolean isApplyTranslucency() {
+    @Override protected boolean isApplyTranslucency() {
         return true;
     }
 
-    @Override
-    protected boolean isApplyButterKnife() {
+    @Override protected boolean isApplyButterKnife() {
         return true;
     }
 
-    @Override
-    protected boolean isApplyEventBus() {
+    @Override protected boolean isApplyEventBus() {
         return false;
-    }
-
-    @Override
-    protected TransitionMode getOverridePendingTransitionMode() {
-        return TransitionMode.RIGHT;
-    }
-
-    @Override
-    protected boolean toggleOverridePendingTransition() {
-        return true;
     }
 
 

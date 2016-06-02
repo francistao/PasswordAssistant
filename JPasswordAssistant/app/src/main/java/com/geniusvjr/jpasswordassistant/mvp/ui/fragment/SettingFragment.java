@@ -2,10 +2,10 @@ package com.geniusvjr.jpasswordassistant.mvp.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.preference.SwitchPreference;
+import android.preference.PreferenceScreen;
 import android.support.design.widget.Snackbar;
-import android.support.v4.view.LayoutInflaterCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.widget.GridView;
@@ -26,12 +26,12 @@ import java.util.List;
 public class SettingFragment extends PreferenceFragment implements SettingAView{
 
 
-    private static final String PREFERENCE_NAME = "PA.setting";
+    private static final String PREFERENCE_NAME = "Memo.setting";
     private SettingFImpl settingFImpl;
-    private SwitchPreference openGesture;
-    private SwitchPreference openShow;
+//    private SwitchPreference openGesture;
+//    private SwitchPreference openShow;
 
-    public SettingFragment(){
+    public SettingFragment() {
         super();
     }
 
@@ -42,6 +42,12 @@ public class SettingFragment extends PreferenceFragment implements SettingAView{
         getPreferenceManager().setSharedPreferencesName(PREFERENCE_NAME);
         settingFImpl = new SettingFImpl(getActivity(), this);
         settingFImpl.onFirstUserVisible();
+    }
+
+    @Override
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        settingFImpl.onPreferenceTreeClick(preferenceScreen, preference);
+        return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
     @Override
@@ -69,18 +75,18 @@ public class SettingFragment extends PreferenceFragment implements SettingAView{
 
     @Override
     public void findView() {
-        openGesture = (SwitchPreference) findPreference("开启手势密码");
-        openShow = (SwitchPreference) findPreference("首页密码可见");
+//        openGesture = (SwitchPreference) findPreference("开启手势密码");
+//        openShow = (SwitchPreference) findPreference("首页密码可见");
     }
 
     @Override
     public void initState(boolean isOpen) {
-        openGesture.setChecked(isOpen);
+//        openGesture.setChecked(isOpen);
     }
 
     @Override
     public void initOpenShow(boolean isOpen) {
-        openShow.setChecked(isOpen);
+//        openShow.setChecked(isOpen);
     }
 
     @Override
@@ -97,7 +103,7 @@ public class SettingFragment extends PreferenceFragment implements SettingAView{
     @Override
     public void go2(Class clazz, Bundle bundle) {
         Intent intent = new Intent(getActivity(), clazz);
-        if(bundle != null){
+        if (bundle != null) {
             intent.putExtras(bundle);
         }
         startActivity(intent);
@@ -111,9 +117,9 @@ public class SettingFragment extends PreferenceFragment implements SettingAView{
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1){
+        if (resultCode == 1) {
             showSnackBar("修改成功");
-        }else {
+        } else if (resultCode == 0) {
             showSnackBar("放弃修改");
         }
     }

@@ -99,6 +99,7 @@ public class IndexPreImpl implements ActivityPresenter, NavigationView.OnNavigat
                 mIndexView.go2Setting();
                 break;
             case R.id.nav_about:
+                mIndexView.go2About();
                 break;
             default:
                 break;

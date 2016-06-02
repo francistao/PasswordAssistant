@@ -16,4 +16,6 @@ public interface IndexAView {
     void showSnackBar(String msg);
 
     void kill();
+
+    void go2About();
 }

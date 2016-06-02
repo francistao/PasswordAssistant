@@ -1,4 +1,4 @@
-package com.jenzz.materialpreference;
+package com.geniusvjr.jpasswordassistant.materialpreference;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -8,13 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.geniusvjr.jpasswordassistant.R;
+
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 import static android.os.Build.VERSION_CODES.LOLLIPOP;
 import static android.text.TextUtils.isEmpty;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static com.jenzz.materialpreference.ThemeUtils.resolveAccentColor;
-import static com.jenzz.materialpreference.Typefaces.getRobotoMedium;
+import static com.geniusvjr.jpasswordassistant.materialpreference.ThemeUtils.resolveAccentColor;
+import static com.geniusvjr.jpasswordassistant.materialpreference.Typefaces.getRobotoMedium;
 
 public class PreferenceCategory extends android.preference.PreferenceCategory {
 

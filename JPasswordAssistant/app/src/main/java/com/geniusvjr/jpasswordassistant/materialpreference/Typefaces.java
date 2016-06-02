@@ -1,4 +1,4 @@
-package com.jenzz.materialpreference;
+package com.geniusvjr.jpasswordassistant.materialpreference;
 
 import android.content.Context;
 import android.graphics.Typeface;

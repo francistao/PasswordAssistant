@@ -1,29 +1,35 @@
-package com.jenzz.materialpreference;
+package com.geniusvjr.jpasswordassistant.materialpreference;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.v7.widget.SwitchCompat;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.CheckBox;
 
-public class SwitchPreference extends TwoStatePreference {
+import com.geniusvjr.jpasswordassistant.R;
 
-  public SwitchPreference(Context context) {
+import static com.geniusvjr.jpasswordassistant.materialpreference.ThemeUtils.isAtLeastL;
+
+
+public class CheckBoxPreference extends TwoStatePreference {
+
+  public CheckBoxPreference(Context context) {
     super(context);
     init(context, null, 0, 0);
   }
 
-  public SwitchPreference(Context context, AttributeSet attrs) {
+  public CheckBoxPreference(Context context, AttributeSet attrs) {
     super(context, attrs);
     init(context, attrs, 0, 0);
   }
 
-  public SwitchPreference(Context context, AttributeSet attrs, int defStyleAttr) {
+  public CheckBoxPreference(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
     init(context, attrs, defStyleAttr, 0);
   }
 
-  public SwitchPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+  public CheckBoxPreference(Context context, AttributeSet attrs, int defStyleAttr,
+      int defStyleRes) {
     super(context, attrs, defStyleAttr, defStyleRes);
     init(context, attrs, defStyleAttr, defStyleRes);
   }
@@ -39,15 +45,20 @@ public class SwitchPreference extends TwoStatePreference {
 
     typedArray.recycle();
 
-    setWidgetLayoutResource(R.layout.mp_switch_preference);
+    setWidgetLayoutResource(R.layout.mp_checkbox_preference);
   }
 
-  @Override
+  @Override @SuppressWarnings("deprecation")
   protected void onBindView(View view) {
     super.onBindView(view);
 
-    SwitchCompat switchCompat = (SwitchCompat) view.findViewById(R.id.switch_compat);
-    switchCompat.setChecked(isChecked());
+    CheckBox checkboxView = (CheckBox) view.findViewById(R.id.checkbox);
+    checkboxView.setChecked(isChecked());
+
+    if (isAtLeastL()) {
+      // remove circular background when pressed
+      checkboxView.setBackgroundDrawable(null);
+    }
 
     syncSummaryView(view);
   }

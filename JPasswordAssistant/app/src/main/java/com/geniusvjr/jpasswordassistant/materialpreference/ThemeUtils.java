@@ -1,9 +1,11 @@
-package com.jenzz.materialpreference;
+package com.geniusvjr.jpasswordassistant.materialpreference;
 
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources.Theme;
 import android.content.res.TypedArray;
+
+import com.geniusvjr.jpasswordassistant.R;
 
 import static android.graphics.Color.parseColor;
 import static android.os.Build.VERSION.SDK_INT;

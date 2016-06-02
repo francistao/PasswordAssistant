@@ -31,7 +31,7 @@
         android:paddingBottom="4dp"
         >
 
-      <com.jenzz.materialpreference.PreferenceImageView
+      <com.geniusvjr.jpasswordassistant.materialpreference.PreferenceImageView
           android:id="@+id/icon"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
